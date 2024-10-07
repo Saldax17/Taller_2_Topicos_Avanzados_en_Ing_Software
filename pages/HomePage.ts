@@ -6,10 +6,9 @@ export class HomePage {
   private loginButtonXPath: string;
 
   constructor(page: Page) {
-    // Inicializamos la página
+
     this.page = page;
 
-    // Inicializamos los selectores de los elementos de la página
     this.teamBuilderButtonXPath = "//div[@id='room-']//button[contains(text(), 'Teambuilder')]";
   }
 
@@ -17,8 +16,6 @@ export class HomePage {
   await this.page.goto('https://play.pokemonshowdown.com/');
   }
 
-
-  // Método para abrir el Team Builder desde la página de inicio
   async openTeamBuilder() {
   
     await this.page.click(this.teamBuilderButtonXPath);
