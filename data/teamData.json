@@ -1,0 +1,134 @@
+{
+    "format":"Ubers",
+    "gen": "Gen 5",
+    "pokemon": [
+        {
+            "name": "",
+            "item":"",
+            "ability": "",
+            "moves":{
+                "move1":"",
+                "move2":"",
+                "move3":"",
+                "move4":""
+
+            },
+            "ivSpread": "",
+            "evStats":{
+                "hp":"",
+                "atk":"",
+                "def":"",
+                "spa":"",
+                "spd":"",
+                "spe":""
+            }
+        },
+        {
+            "name": "",
+            "item":"",
+            "ability": "",
+            "moves":{
+                "move1":"",
+                "move2":"",
+                "move3":"",
+                "move4":""
+
+            },
+            "ivSpread": "",
+            "evStats":{
+                "hp":"",
+                "atk":"",
+                "def":"",
+                "spa":"",
+                "spd":"",
+                "spe":""
+            }
+        },
+        {
+            "name": "",
+            "item":"",
+            "ability": "",
+            "moves":{
+                "move1":"",
+                "move2":"",
+                "move3":"",
+                "move4":""
+
+            },
+            "ivSpread": "",
+            "evStats":{
+                "hp":"",
+                "atk":"",
+                "def":"",
+                "spa":"",
+                "spd":"",
+                "spe":""
+            }
+        },
+        {
+            "name": "",
+            "item":"",
+            "ability": "",
+            "moves":{
+                "move1":"",
+                "move2":"",
+                "move3":"",
+                "move4":""
+
+            },
+            "ivSpread": "",
+            "evStats":{
+                "hp":"",
+                "atk":"",
+                "def":"",
+                "spa":"",
+                "spd":"",
+                "spe":""
+            }
+        },
+        {
+            "name": "",
+            "item":"",
+            "ability": "",
+            "moves":{
+                "move1":"",
+                "move2":"",
+                "move3":"",
+                "move4":""
+
+            },
+            "ivSpread": "",
+            "evStats":{
+                "hp":"",
+                "atk":"",
+                "def":"",
+                "spa":"",
+                "spd":"",
+                "spe":""
+            }
+        },
+        {
+            "name": "",
+            "item":"",
+            "ability": "",
+            "moves":{
+                "move1":"",
+                "move2":"",
+                "move3":"",
+                "move4":""
+
+            },
+            "ivSpread": "",
+            "evStats":{
+                "hp":"",
+                "atk":"",
+                "def":"",
+                "spa":"",
+                "spd":"",
+                "spe":""
+            }
+        }
+
+    ],
+    "expectedValidationMessage": "Your team is valid for [Gen 5] Ubers."
+}
