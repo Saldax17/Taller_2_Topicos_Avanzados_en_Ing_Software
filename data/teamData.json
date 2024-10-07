@@ -3,132 +3,126 @@
     "gen": "Gen 5",
     "pokemon": [
         {
-            "name": "",
-            "item":"",
-            "ability": "",
-            "moves":{
-                "move1":"",
-                "move2":"",
-                "move3":"",
-                "move4":""
-
+            "name": "Lugia",
+            "item": "Choice Band",
+            "ability": "Pressure",
+            "moves": {
+                "move1": "Aeroblast",
+                "move2": "Ancient Power",
+                "move3": "Aqua Tail",
+                "move4": "Avalanche"
             },
-            "ivSpread": "",
+            "ivSpread": "31/31/31/31/31/31",
             "evStats":{
-                "hp":"",
-                "atk":"",
-                "def":"",
-                "spa":"",
+                "hp":"252",
+                "atk":"132",
+                "def":"31",
+                "spa":"31",
                 "spd":"",
-                "spe":""
+                "spe":"31"
             }
         },
         {
-            "name": "",
-            "item":"",
-            "ability": "",
-            "moves":{
-                "move1":"",
-                "move2":"",
-                "move3":"",
-                "move4":""
-
+            "name": "Arceus",
+            "item": "Life Orb",
+            "ability": "Multitype",
+            "moves": {
+                "move1": "Judgment",
+                "move2": "Extreme Speed",
+                "move3": "Swords Dance",
+                "move4": "Recover"
             },
-            "ivSpread": "",
-            "evStats":{
-                "hp":"",
-                "atk":"",
-                "def":"",
-                "spa":"",
-                "spd":"",
-                "spe":""
+
+            "ivSpread": "31/31/31/31/31/31",
+            "evStats": {
+                "hp": "252",
+                "atk": "132",
+                "def": "31",
+                "spa": "31",
+                "spd": "31",
+                "spe": "31"
             }
         },
         {
-            "name": "",
-            "item":"",
-            "ability": "",
-            "moves":{
-                "move1":"",
-                "move2":"",
-                "move3":"",
-                "move4":""
-
+            "name": "Kyogre",
+            "item": "Choice Scarf",
+            "ability": "Drizzle",
+            "moves": {
+                "move1": "Water Spout",
+                "move2": "Thunder",
+                "move3": "Ice Beam",
+                "move4": "Surf"
             },
-            "ivSpread": "",
-            "evStats":{
-                "hp":"",
-                "atk":"",
-                "def":"",
-                "spa":"",
-                "spd":"",
-                "spe":""
+            "ivSpread": "31/0/31/31/31/31",
+            "evStats": {
+                "hp": "4",
+                "atk": "0",
+                "def": "0",
+                "spa": "252",
+                "spd": "0",
+                "spe": "252"
             }
         },
         {
-            "name": "",
-            "item":"",
-            "ability": "",
-            "moves":{
-                "move1":"",
-                "move2":"",
-                "move3":"",
-                "move4":""
-
+            "name": "Mewtwo",
+            "item": "Life Orb",
+            "ability": "Pressure",
+            "moves": {
+                "move1": "Psystrike",
+                "move2": "Aura Sphere",
+                "move3": "Fire Blast",
+                "move4": "Ice Beam"
             },
-            "ivSpread": "",
-            "evStats":{
-                "hp":"",
-                "atk":"",
-                "def":"",
-                "spa":"",
-                "spd":"",
-                "spe":""
+            "ivSpread": "31/31/31/31/31/31",
+            "evStats": {
+                "hp": "4",
+                "atk": "0",
+                "def": "0",
+                "spa": "252",
+                "spd": "4",
+                "spe": "0"
             }
         },
         {
-            "name": "",
-            "item":"",
-            "ability": "",
-            "moves":{
-                "move1":"",
-                "move2":"",
-                "move3":"",
-                "move4":""
-
+            "name": "Groudon",
+            "item": "Leftovers",
+            "ability": "Drought",
+            "moves": {
+                "move1": "Earthquake",
+                "move2": "Stone Edge",
+                "move3": "Stealth Rock",
+                "move4": "Thunder Wave"
             },
-            "ivSpread": "",
-            "evStats":{
-                "hp":"",
-                "atk":"",
-                "def":"",
-                "spa":"",
-                "spd":"",
-                "spe":""
+            "ivSpread": "31/31/31/0/31/31",
+            "evStats": {
+                "hp": "252",
+                "atk": "252",
+                "def": "4",
+                "spa": "0",
+                "spd": "0",
+                "spe": "0"
             }
         },
         {
-            "name": "",
-            "item":"",
-            "ability": "",
-            "moves":{
-                "move1":"",
-                "move2":"",
-                "move3":"",
-                "move4":""
-
+            "name": "Darkrai",
+            "item": "Focus Sash",
+            "ability": "Bad Dreams",
+            "moves": {
+              "move1": "Dark Void",
+              "move2": "Dark Pulse",
+              "move3": "Focus Blast",
+              "move4": "Nasty Plot"
             },
-            "ivSpread": "",
-            "evStats":{
-                "hp":"",
-                "atk":"",
-                "def":"",
-                "spa":"",
-                "spd":"",
-                "spe":""
+            "ivSpread": "31/0/31/31/31/31",
+            "evStats": {
+              "hp": "0",
+              "atk": "0",
+              "def": "0",
+              "spa": "252",
+              "spd": "4",
+              "spe": "252"
             }
-        }
-
+          }
     ],
     "expectedValidationMessage": "Your team is valid for [Gen 5] Ubers."
 }

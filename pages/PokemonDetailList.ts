@@ -14,10 +14,9 @@ export class PokemonDetailsPage {
   constructor(page: Page) {
     this.page = page;
 
-    // Inicializamos los selectores que corresponden a la página
     this.abilitySlot = page.locator('input[name="ability"]');
     this.ivSpreadDropdown = page.locator('select[name="ivspread"]');
-    this.itemSlot = page.locator('input[name="item"]'); // Añadí el slot para el ítem
+    this.itemSlot = page.locator('input[name="item"]');
     this.moves = {
       move1: page.locator('input[name="move1"]'),
       move2: page.locator('input[name="move2"]'),
@@ -37,53 +36,50 @@ export class PokemonDetailsPage {
     this.totalEv = page.locator('div.totalev em');
   }
 
-  // Método para seleccionar un ítem
   async selectItem(itemName: string) {
-    await this.itemSlot.click(); // Hacemos click en el slot del ítem
-    await this.itemSlot.fill(itemName); // Rellenamos el campo con el nombre del ítem
-    await this.page.keyboard.press('Enter'); // Confirmamos el ítem
+    await this.itemSlot.click(); 
+    await this.itemSlot.fill(itemName); 
+    await this.page.keyboard.press('Enter'); 
   }
 
-  // Método para seleccionar una habilidad
   async selectAbility(abilityName: string) {
-    await this.abilitySlot.click(); // Hacemos click en el slot de la habilidad
-    await this.abilitySlot.fill(abilityName); // Rellenamos el campo con el nombre de la habilidad
-    await this.page.keyboard.press('Enter'); // Confirmamos la habilidad
+    await this.abilitySlot.click(); 
+    await this.abilitySlot.fill(abilityName); 
+    await this.page.keyboard.press('Enter'); 
   }
 
-  // Método para seleccionar los movimientos
-  async selectMoves(moves: string[]) {
-    for (let i = 0; i < moves.length; i++) {
-      const moveLocator = this.moves[`move${i + 1}`]; // Seleccionamos el input correspondiente al movimiento
-      await moveLocator.click(); // Hacemos click en el campo de movimiento
-      await moveLocator.fill(moves[i]); // Rellenamos con el nombre del movimiento
-      await this.page.keyboard.press('Enter'); // Confirmamos el movimiento
+  async selectMoves(moves: { move1: string; move2: string; move3: string; move4: string }) {
+    for (let i = 1; i <= 4; i++) {
+      const moveLocator = this.moves[`move${i}`]; 
+      await moveLocator.click();
+      await moveLocator.fill(moves[`move${i}`]); 
+      await this.page.keyboard.press('Enter');
     }
   }
+  
 
-  // Método para asignar los valores de los EVs
-  async setEVStats(evStats: { hp: number; atk: number; def: number; spa: number; spd: number; spe: number }) {
-    await this.evStatPanel.click(); // Abrimos el panel de estadísticas
-    // Asignamos los EVs para cada estadística
-    for (const stat in evStats) {
-      if (typeof evStats[stat] !== 'number') {
-        throw new Error(`Expected ${stat} to be a number, but got ${typeof evStats[stat]}`);
-      }
-      await this.evStatInputs[stat].fill(evStats[stat].toString());
+async setEVStats(evStats: { hp: string; atk: string; def: string; spa: string; spd: string; spe: string }) {
+  await this.evStatPanel.click(); 
+
+  for (const stat in evStats) {
+
+    if (typeof evStats[stat] !== 'string') {
+      throw new Error(`Expected ${stat} to be a string, but got ${typeof evStats[stat]}`);
     }
-  }
 
-  // Método para verificar el conteo total de EVs
+    await this.evStatInputs[stat].fill(evStats[stat]);
+  }
+}
+
   async verifyTotalEvCount() {
-    const totalEvText = await this.totalEv.textContent(); // Obtenemos el texto del total de EVs
-    const totalEvValue = parseInt(totalEvText || '0', 10); // Convertimos el texto a número
-    if (totalEvValue !== 510) { // Verificamos que el total sea 510, el máximo permitido
+    const totalEvText = await this.totalEv.textContent(); 
+    const totalEvValue = parseInt(totalEvText || '0', 10); 
+    if (totalEvValue !== 510) { 
       throw new Error(`Total EV count is incorrect, expected 510 but got ${totalEvValue}`);
     }
   }
 
-  // Método para regresar al equipo
   async goBackToTeam() {
-    await this.backToTeamButton.click(); // Hacemos click en el botón para regresar al equipo
+    await this.backToTeamButton.click(); 
   }
 }
