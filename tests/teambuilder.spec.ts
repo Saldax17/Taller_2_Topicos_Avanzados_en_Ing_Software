@@ -1,22 +1,23 @@
 import {test, expect} from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
 import { TeamListPage } from '../pages/TeamListPage';
-import { TeamCreationPage} from '../pages/PokemonDetailList';
+import { TeamCreationPage } from '../pages/TeamCreationPage';
+import { PokemonDetailsPage } from '../pages/PokemonDetailList'
 import * as testData from '../data/teamData.json';
 
 test('Create and validate new Team', async ({ page }) => {
     test.slow()
-    const homePage = new HomePage(page)
-    const teamListPage = new TeamListPage(page)
-    const TeamCreationPage = new TeamCreationPage(page)
+    const homePage = new HomePage(page) 
+    const teamListPage = new TeamListPage(page) 
+    const teamCreationPage = new TeamCreationPage(page) 
     const pokemonDetailList = new PokemonDetailsPage(page)
 
     await homePage.navigate()
     await homePage.openTeamBuilder()
     await teamListPage.createNewTeam()
-    await TeamCreationPage.selectFormat(testData.format, testData.gen)
+    await teamCreationPage.selectFormat(testData.format, testData.gen)
     for (const pokemon of testData.pokemon){
-        await TeamCreationPage.addPokemon(pokemon.name)
+        await teamCreationPage.addPokemon(pokemon.name)
         
         await pokemonDetailList.selectItem(pokemon.item)
         await pokemonDetailList.selectMoves(pokemon.moves)
@@ -28,6 +29,6 @@ test('Create and validate new Team', async ({ page }) => {
     }
 
     await page.screenshot({ path: `team.png`})
-    await TeamCreationPage.validateTeam(testData.format, testData.gen)
+    await teamCreationPage.validateTeam(testData.format, testData.gen)
 
 })
