@@ -14,7 +14,7 @@ test('Create and validate new Team', async ({ page }) => {
 
     await homePage.navigate()
     await homePage.openTeamBuilder()
-    // await teamListPage.createNewTeam()
+    await teamListPage.createNewTeam()
     // await teamCreationPage.selectFormat(testData.format, testData.gen)
     // for (const pokemon of testData.pokemon){
     //     await teamCreationPage.addPokemon(pokemon.name)
