@@ -15,18 +15,18 @@ test('Create and validate new Team', async ({ page }) => {
     await homePage.navigate()
     await homePage.openTeamBuilder()
     await teamListPage.createNewTeam()
-    // await teamCreationPage.selectFormat(testData.format, testData.gen)
-    // for (const pokemon of testData.pokemon){
-    //     await teamCreationPage.addPokemon(pokemon.name)
+    await teamCreationPage.selectFormat(testData.format, testData.gen)
+    for (const pokemon of testData.pokemon){
+        await teamCreationPage.addPokemon(pokemon.name)
         
-    //     await pokemonDetailList.selectItem(pokemon.item)
-    //     await pokemonDetailList.selectMoves(pokemon.moves)
-    //     await pokemonDetailList.setEVStats(pokemon.evStats)
+        await pokemonDetailList.selectItem(pokemon.item)
+        await pokemonDetailList.selectMoves(pokemon.moves)
+        await pokemonDetailList.setEVStats(pokemon.evStats)
 
-    //     await pokemonDetailList.verifyTotalEvCount()
-    //     await page.screenshot({ path: `${pokemon.name}.png`})
-    //     await pokemonDetailList.goBackToTeam()
-    // }
+        // await pokemonDetailList.verifyTotalEvCount()
+        // await page.screenshot({ path: `${pokemon.name}.png`})
+        // await pokemonDetailList.goBackToTeam()
+    }
 
     // await page.screenshot({ path: `team.png`})
     // await teamCreationPage.validateTeam(testData.format, testData.gen)
