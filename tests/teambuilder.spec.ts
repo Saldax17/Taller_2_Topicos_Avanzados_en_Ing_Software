@@ -46,6 +46,14 @@ test('Create and validate new Team', async ({ page }) => {
         await pokemonDetailList.goBackToTeam();
     }
 
+    // Verificación de que el equipo es válido para la competencia
+    try {
+        await teamCreationPage.validateTeamCreation(testData.format, testData.gen);
+        console.log('El equipo es válido para el formato de competencia.');
+    } catch (error) {
+        errors.push(`Error en la validación del equipo para el formato ${testData.format}: ${error.message}`);
+    }
+
     // Al final del loop, si hubo errores, lanzamos un error con todos los detalles
     if (errors.length > 0) {
         console.error('Fallos en las siguientes aserciones: \n' + errors.join('\n'));
