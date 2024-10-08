@@ -1,7 +1,7 @@
+import { BasePage } from './BasePage';
 import { Page } from '@playwright/test';
 
-export class PokemonDetailsPage {
-  private page: Page;
+export class PokemonDetailsPage extends BasePage {
   private abilitySlot;
   private ivSpreadDropdown;
   private moves;
@@ -12,8 +12,7 @@ export class PokemonDetailsPage {
   private itemSlot;
 
   constructor(page: Page) {
-    this.page = page;
-
+    super(page);
     this.abilitySlot = page.locator('input[name="ability"]');
     this.ivSpreadDropdown = page.locator('select[name="ivspread"]');
     this.itemSlot = page.locator('input[name="item"]');
@@ -32,54 +31,48 @@ export class PokemonDetailsPage {
       spe: page.locator('input[name="stat-spe"]'),
     };
     this.evStatPanel = page.locator('button[name="stats"]');
-    this.backToTeamButton = page.locator('button[name="back"]');
+    this.backToTeamButton = page.locator('div.teamwrapper div.pad button[name="back"]');
     this.totalEv = page.locator('div.totalev em');
   }
 
-  async selectItem(itemName: string) {
-    await this.itemSlot.click(); 
-    await this.itemSlot.fill(itemName); 
-    await this.page.keyboard.press('Enter'); 
+  async selectItem(itemName: string): Promise<void> {
+    await this.clickElement(this.itemSlot);
+    await this.fillInput(this.itemSlot, itemName);
+    await this.page.keyboard.press('Enter');
   }
 
-  async selectAbility(abilityName: string) {
-    await this.abilitySlot.click(); 
-    await this.abilitySlot.fill(abilityName); 
-    await this.page.keyboard.press('Enter'); 
+  async selectAbility(abilityName: string): Promise<void> {
+    await this.clickElement(this.abilitySlot);
+    await this.fillInput(this.abilitySlot, abilityName);
+    await this.page.keyboard.press('Enter');
   }
 
-  async selectMoves(moves: { move1: string; move2: string; move3: string; move4: string }) {
+  async selectMoves(moves: { move1: string; move2: string; move3: string; move4: string }): Promise<void> {
     for (let i = 1; i <= 4; i++) {
-      const moveLocator = this.moves[`move${i}`]; 
-      await moveLocator.click();
-      await moveLocator.fill(moves[`move${i}`]); 
+      const moveLocator = this.moves[`move${i}`];
+      await this.clickElement(moveLocator);
+      await this.fillInput(moveLocator, moves[`move${i}`]);
       await this.page.keyboard.press('Enter');
     }
   }
-  
 
-async setEVStats(evStats: { hp: string; atk: string; def: string; spa: string; spd: string; spe: string }) {
-  await this.evStatPanel.click(); 
-
-  for (const stat in evStats) {
-
-    if (typeof evStats[stat] !== 'string') {
-      throw new Error(`Expected ${stat} to be a string, but got ${typeof evStats[stat]}`);
-    }
-
-    await this.evStatInputs[stat].fill(evStats[stat]);
-  }
-}
-
-  async verifyTotalEvCount() {
-    const totalEvText = await this.totalEv.textContent(); 
-    const totalEvValue = parseInt(totalEvText || '0', 10); 
-    if (totalEvValue !== 510) { 
-      throw new Error(`Total EV count is incorrect, expected 510 but got ${totalEvValue}`);
+  async setEVStats(evStats: { hp: string; atk: string; def: string; spa: string; spd: string; spe: string }): Promise<void> {
+    await this.clickElement(this.evStatPanel);
+    for (const stat in evStats) {
+      await this.fillInput(this.evStatInputs[stat], evStats[stat]);
     }
   }
 
-  async goBackToTeam() {
-    await this.backToTeamButton.click(); 
+  async verifyTotalEvCount(): Promise<number> {
+    const totalEvText = await this.totalEv.textContent();
+    const totalEvValue = parseInt(totalEvText || '0', 10);
+    if (totalEvValue !== 0) {
+      console.error(`Total EV count is incorrect, expected 0 but got ${totalEvValue}`);
+    }
+    return totalEvValue;
+  }
+
+  async goBackToTeam(): Promise<void> {
+    await this.clickElement(this.backToTeamButton);
   }
 }

@@ -16,17 +16,45 @@ test('Create and validate new Team', async ({ page }) => {
     await homePage.openTeamBuilder()
     await teamListPage.createNewTeam()
     await teamCreationPage.selectFormat(testData.format, testData.gen)
-    for (const pokemon of testData.pokemon){
-        await teamCreationPage.addPokemon(pokemon.name)
-        
-        await pokemonDetailList.selectItem(pokemon.item)
-        await pokemonDetailList.selectMoves(pokemon.moves)
-        await pokemonDetailList.setEVStats(pokemon.evStats)
+    let errors: string[] = []; // Lista para acumular los errores de las aserciones
 
-        // await pokemonDetailList.verifyTotalEvCount()
-        // await page.screenshot({ path: `${pokemon.name}.png`})
-        // await pokemonDetailList.goBackToTeam()
+    for (const pokemon of testData.pokemon) {
+        console.log(`Agregando pokemon ${pokemon.name} al equipo`);
+
+        // Agregar Pokémon al equipo
+        await teamCreationPage.addPokemon(pokemon.name);
+        
+        // Seleccionar ítem, movimientos y estadísticas EV
+        await pokemonDetailList.selectItem(pokemon.item);
+        await pokemonDetailList.selectMoves(pokemon.moves);
+        await pokemonDetailList.setEVStats(pokemon.evStats);
+
+        console.log(`Validando assert para Pokémon ${pokemon.name}`);
+
+        // Validar el total de EV restantes para el Pokémon
+        try {
+            let valueRemainingEv = await pokemonDetailList.verifyTotalEvCount();
+            expect(valueRemainingEv).toBe(0); // Aserción
+        } catch (error) {
+            errors.push(`Error en el assert del Pokémon ${pokemon.name}: ${error.message}`); // Acumular errores
+        }
+
+        // Capturar pantalla si es necesario (comentar/descomentar según tu necesidad)
+        // await page.screenshot({ path: `${pokemon.name}.png` });
+
+        // Volver al equipo después de agregar y configurar el Pokémon
+        await pokemonDetailList.goBackToTeam();
     }
+
+    // Al final del loop, si hubo errores, lanzamos un error con todos los detalles
+    if (errors.length > 0) {
+        console.error('Fallos en las siguientes aserciones: \n' + errors.join('\n'));
+        throw new Error('La prueba falló');
+    }
+
+
+    // Añadido para hacer la ejecución más lenta
+    await page.waitForTimeout(2000); // Espera 2 segundos antes de finalizar
 
     // await page.screenshot({ path: `team.png`})
     // await teamCreationPage.validateTeam(testData.format, testData.gen)

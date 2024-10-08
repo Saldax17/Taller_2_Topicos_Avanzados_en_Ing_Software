@@ -1,24 +1,23 @@
-import { Page } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class HomePage {
-  private page: Page;
+export class HomePage extends BasePage {
   private teamBuilderButtonXPath: string;
-  private loginButtonXPath: string;
+  private readonly url: string = 'https://play.pokemonshowdown.com/';
 
-  constructor(page: Page) {
-
-    this.page = page;
-
+  constructor(page) {
+    super(page);
     this.teamBuilderButtonXPath = "//div[@id='room-']//button[contains(text(), 'Teambuilder')]";
   }
 
- async navigate() {
-  await this.page.goto('https://play.pokemonshowdown.com/');
+  async navigate(): Promise<void> {
+    await this.navigateTo(this.url);
   }
 
-  async openTeamBuilder() {
-  
-    await this.page.click(this.teamBuilderButtonXPath);
+  async openTeamBuilder(): Promise<void> {
+    if (await this.isVisible(this.teamBuilderButtonXPath)) {
+      await this.clickElement(this.teamBuilderButtonXPath);
+    } else {
+      throw new Error("Team Builder Button is not visible");
+    }
   }
-
 }
