@@ -36,15 +36,11 @@ export class TeamCreationPage extends BasePage {
   async validateTeamCreation(format: string, gen: string): Promise<void> {    
     // Clic en el botón "Validate"
     await this.clickElement(this.validateButton);
-    
     // Esperar a que aparezca la ventana emergente con el resultado de la validación
     const validationMessage = this.page.locator('//P[contains(text(), "Your team is valid for")]');
-    
     await validationMessage.waitFor({ state: 'visible', timeout: 5000 });
-
     // Verificar que el mensaje de validación contenga la palabra "valid" para confirmar que el equipo es válido
-    await expect(validationMessage).toContainText('valid');
-    
+    await expect(validationMessage).toContainText('valid');   
     // Clic en el botón "OK" para cerrar la ventana emergente (si es necesario)
     await this.clickElement(this.okButton);
 }

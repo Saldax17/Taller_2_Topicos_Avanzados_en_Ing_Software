@@ -35,6 +35,7 @@ test('Create and validate new Team', async ({ page }) => {
         try {
             let valueRemainingEv = await pokemonDetailList.verifyTotalEvCount();
             expect(valueRemainingEv).toBe(0); // Aserción
+            await page.screenshot({ path: `${pokemon.name}.png` });
         } catch (error) {
             errors.push(`Error en el assert del Pokémon ${pokemon.name}: ${error.message}`); // Acumular errores
         }
@@ -47,12 +48,6 @@ test('Create and validate new Team', async ({ page }) => {
     }
 
     // Verificación de que el equipo es válido para la competencia
-    try {
-        await teamCreationPage.validateTeamCreation(testData.format, testData.gen);
-        console.log('El equipo es válido para el formato de competencia.');
-    } catch (error) {
-        errors.push(`Error en la validación del equipo para el formato ${testData.format}: ${error.message}`);
-    }
 
     // Al final del loop, si hubo errores, lanzamos un error con todos los detalles
     if (errors.length > 0) {
@@ -66,5 +61,13 @@ test('Create and validate new Team', async ({ page }) => {
 
     // await page.screenshot({ path: `team.png`})
     // await teamCreationPage.validateTeam(testData.format, testData.gen)
+
+    try {
+        await teamCreationPage.validateTeamCreation(testData.format, testData.gen);
+        console.log('El equipo es válido para el formato de competencia.');
+        await page.screenshot({ path: `team.png`})
+    } catch (error) {
+        errors.push(`Error en la validación del equipo para el formato ${testData.format}: ${error.message}`);
+    }
 
 })
