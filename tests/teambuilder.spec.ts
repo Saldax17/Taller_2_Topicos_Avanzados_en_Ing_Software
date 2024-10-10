@@ -65,7 +65,7 @@ test('Create and validate new Team', async ({ page }) => {
     try {
         await teamCreationPage.validateTeamCreation(testData.format, testData.gen);
         console.log('El equipo es válido para el formato de competencia.');
-        await page.screenshot({ path: `team.png`})
+        
     } catch (error) {
         errors.push(`Error en la validación del equipo para el formato ${testData.format}: ${error.message}`);
     }
